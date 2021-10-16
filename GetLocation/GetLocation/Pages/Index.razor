@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<h1>Let's check where you are :)</h1>
+
+@inject IJSRuntime JS
+
+<button @onclick="GetLocation">Get location</button>
+
+@code {
+
+    private async Task<(long, long)> GetLocation()
+    {
+        ValueTuple<long, long> location = await JS.InvokeAsync<(long longitude, long lattitude)>("getLocation");
+        return location;
+    }
+}
