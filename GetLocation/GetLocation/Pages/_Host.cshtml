@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
     <script>
-        window.getLocation = () => {
-            if (navigator.geoLocation) {
-                // Do something with the navigator.geolocation.getCurrentPosition function
-            }
+        const getCoords = async () => {
+            const pos = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+            return [pos.coords.longitude, pos.coords.latitude];
         };
     </script>
 </head>
